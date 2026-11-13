@@ -3,6 +3,7 @@
 ### INF241
 
 Laboratory 0: Discussion 
+
 In this activity, I learned how to set up Flutter and build my first mobile app using Visual Studio Code. At 
 first, I ran into a few hurdles with creating the project, choosing the right settings, and getting an 
 emulator running. I realized that for Flutter to work, the SDK and system dependencies have to be 
