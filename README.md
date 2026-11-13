@@ -2,4 +2,5 @@
 ### 2024-1000486
 ### INF242 
 
-Laboratory 0: Discussion 
+Laboratory Lab Activity 1: discussion 
+
