@@ -5,22 +5,11 @@ import 'custom_text.dart';
 
 class NewsFeedCard extends StatelessWidget {
   final String userName;
-<<<<<<< HEAD
-=======
   final String userAvatar;
->>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
   final String postContent;
   final String date;
   final int numOfLikes;
   final bool hasImage;
-<<<<<<< HEAD
-  const NewsFeedCard({
-    super.key,
-    required this.userName,
-    required this.postContent,
-    this.numOfLikes = 0,
-    this.hasImage = false,
-=======
   final String? imagePath; // Enhancement 1: Optional path for media asset
 
   const NewsFeedCard({
@@ -31,7 +20,6 @@ class NewsFeedCard extends StatelessWidget {
     this.numOfLikes = 0,
     this.hasImage = false,
     this.imagePath,
->>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
     required this.date,
   });
 
@@ -47,15 +35,11 @@ class NewsFeedCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-<<<<<<< HEAD
-                const Icon(Icons.person),
-=======
                 // Enhancement 2: Dynamic Profile Avatar
                 CircleAvatar(
                   backgroundImage: AssetImage(userAvatar),
                   radius: ScreenUtil().setWidth(20),
                 ),
->>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
                 SizedBox(
                   width: ScreenUtil().setWidth(10),
                 ),
@@ -101,10 +85,6 @@ class NewsFeedCard extends StatelessWidget {
               color: Colors.black,
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
-<<<<<<< HEAD
-            hasImage == true
-                ? const Placeholder()
-=======
             
             // Enhancement 1: Dynamic Image / Placeholder handling
             hasImage == true
@@ -122,16 +102,11 @@ class NewsFeedCard extends StatelessWidget {
                           : const Placeholder(fallbackHeight: 200),
                     ),
                   )
->>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
                 : SizedBox(
                     height: ScreenUtil().setHeight(1),
                   ),
 
-<<<<<<< HEAD
-                  Row(
-=======
             Row(
->>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton.icon(
@@ -174,29 +149,6 @@ class NewsFeedCard extends StatelessWidget {
                 ),
               ],
             ),
-<<<<<<< HEAD
-            Row(
-              children: [
-                const Icon(Icons.person),
-                SizedBox(
-                  width: ScreenUtil().setWidth(10),
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(ScreenUtil().setSp(10), 0, 0, 0),
-                  alignment: Alignment.centerLeft,
-                  height: ScreenUtil().setHeight(25),
-                  width: ScreenUtil().setWidth(330),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(ScreenUtil().setSp(10)),
-                    ),
-                  ),
-                  child: CustomText(
-                    text: 'Write a comment...',
-                    fontSize: ScreenUtil().setSp(11),
-                    color: Colors.grey,
-=======
             // Enhancement 3: Widget-based Action Buttons Bar
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -298,7 +250,6 @@ class NewsFeedCard extends StatelessWidget {
                         ),
                       ],
                     ),
->>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
                   ),
                 ),
               ],

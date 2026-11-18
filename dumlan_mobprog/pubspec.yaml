@@ -18,10 +18,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-<<<<<<< HEAD
-=======
   assets:
     - images/dagoc.jpg
     - images/jm.png
     
->>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
