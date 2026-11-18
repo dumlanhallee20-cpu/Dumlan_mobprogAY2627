@@ -5,16 +5,33 @@ import 'custom_text.dart';
 
 class NewsFeedCard extends StatelessWidget {
   final String userName;
+<<<<<<< HEAD
+=======
+  final String userAvatar;
+>>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
   final String postContent;
   final String date;
   final int numOfLikes;
   final bool hasImage;
+<<<<<<< HEAD
   const NewsFeedCard({
     super.key,
     required this.userName,
     required this.postContent,
     this.numOfLikes = 0,
     this.hasImage = false,
+=======
+  final String? imagePath; // Enhancement 1: Optional path for media asset
+
+  const NewsFeedCard({
+    super.key,
+    required this.userName,
+    required this.userAvatar,
+    required this.postContent,
+    this.numOfLikes = 0,
+    this.hasImage = false,
+    this.imagePath,
+>>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
     required this.date,
   });
 
@@ -30,7 +47,15 @@ class NewsFeedCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+<<<<<<< HEAD
                 const Icon(Icons.person),
+=======
+                // Enhancement 2: Dynamic Profile Avatar
+                CircleAvatar(
+                  backgroundImage: AssetImage(userAvatar),
+                  radius: ScreenUtil().setWidth(20),
+                ),
+>>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
                 SizedBox(
                   width: ScreenUtil().setWidth(10),
                 ),
@@ -76,13 +101,37 @@ class NewsFeedCard extends StatelessWidget {
               color: Colors.black,
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
+<<<<<<< HEAD
             hasImage == true
                 ? const Placeholder()
+=======
+            
+            // Enhancement 1: Dynamic Image / Placeholder handling
+            hasImage == true
+                ? Padding(
+                    padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(5)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(ScreenUtil().setWidth(8)),
+                      child: imagePath != null
+                          ? Image.asset(
+                              imagePath!,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: ScreenUtil().setHeight(250),
+                            )
+                          : const Placeholder(fallbackHeight: 200),
+                    ),
+                  )
+>>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
                 : SizedBox(
                     height: ScreenUtil().setHeight(1),
                   ),
 
+<<<<<<< HEAD
                   Row(
+=======
+            Row(
+>>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton.icon(
@@ -125,6 +174,7 @@ class NewsFeedCard extends StatelessWidget {
                 ),
               ],
             ),
+<<<<<<< HEAD
             Row(
               children: [
                 const Icon(Icons.person),
@@ -146,6 +196,109 @@ class NewsFeedCard extends StatelessWidget {
                     text: 'Write a comment...',
                     fontSize: ScreenUtil().setSp(11),
                     color: Colors.grey,
+=======
+            // Enhancement 3: Widget-based Action Buttons Bar
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.thumb_up_outlined, color: Colors.grey),
+                  label: CustomText(
+                    text: 'Like',
+                    fontSize: ScreenUtil().setSp(12),
+                    color: Colors.grey,
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.chat_bubble_outline, color: Colors.grey),
+                  label: CustomText(
+                    text: 'Comment',
+                    fontSize: ScreenUtil().setSp(12),
+                    color: Colors.grey,
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.share_outlined, color: Colors.grey),
+                  label: CustomText(
+                    text: 'Share',
+                    fontSize: ScreenUtil().setSp(12),
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+            const Divider(),
+
+            // Enhancement 3: "Most relevant" dropdown indicator header
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CustomText(
+                  text: 'Most relevant ',
+                  fontSize: ScreenUtil().setSp(11),
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                ),
+                Icon(
+                  Icons.arrow_drop_down,
+                  size: ScreenUtil().setSp(16),
+                  color: Colors.grey,
+                ),
+              ],
+            ),
+            SizedBox(height: ScreenUtil().setHeight(5)),
+
+            // Enhancement 3: Comment Input Container with embedded accessory icons
+            Row(
+              children: [
+                // Enhancement 2: Comment Input Avatar
+                CircleAvatar(
+                  backgroundImage: AssetImage(userAvatar),
+                  radius: ScreenUtil().setWidth(14),
+                ),
+                SizedBox(
+                  width: ScreenUtil().setWidth(10),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: ScreenUtil().setSp(10),
+                      vertical: ScreenUtil().setHeight(5),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(ScreenUtil().setSp(20)),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: CustomText(
+                            text: 'Write a comment...',
+                            fontSize: ScreenUtil().setSp(11),
+                            color: Colors.grey,
+                          ),
+                        ),
+                        // Accessory icons matching the design reference
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.gif_box_outlined, size: 16, color: Colors.grey),
+                            SizedBox(width: ScreenUtil().setWidth(4)),
+                            Icon(Icons.emoji_emotions_outlined, size: 16, color: Colors.grey),
+                            SizedBox(width: ScreenUtil().setWidth(4)),
+                            Icon(Icons.camera_alt_outlined, size: 16, color: Colors.grey),
+                            SizedBox(width: ScreenUtil().setWidth(4)),
+                            Icon(Icons.sticky_note_2_outlined, size: 16, color: Colors.grey),
+                          ],
+                        ),
+                      ],
+                    ),
+>>>>>>> 042b2f5 (Implement UI enhancements: avatars, dynamic images, and action buttons)
                   ),
                 ),
               ],
