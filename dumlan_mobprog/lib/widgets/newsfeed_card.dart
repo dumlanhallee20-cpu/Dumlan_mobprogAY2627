@@ -9,18 +9,22 @@ class NewsFeedCard extends StatelessWidget {
   final String postContent;
   final String date;
   final int numOfLikes;
+  final int numOfComments;
+  final int numOfShares;
   final bool hasImage;
-  final String? imagePath; // Enhancement 1: Optional path for media asset
+  final String? imagePath;
 
   const NewsFeedCard({
     super.key,
     required this.userName,
     required this.userAvatar,
     required this.postContent,
-    this.numOfLikes = 0,
+    required this.date,
+    this.numOfLikes = 200,
+    this.numOfComments = 42,
+    this.numOfShares = 5,
     this.hasImage = false,
     this.imagePath,
-    required this.date,
   });
 
   @override
@@ -32,17 +36,15 @@ class NewsFeedCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Header: Avatar, Name, Date
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                // Enhancement 2: Dynamic Profile Avatar
                 CircleAvatar(
+                  radius: ScreenUtil().setSp(20),
                   backgroundImage: AssetImage(userAvatar),
-                  radius: ScreenUtil().setWidth(20),
                 ),
-                SizedBox(
-                  width: ScreenUtil().setWidth(10),
-                ),
+                SizedBox(width: ScreenUtil().setWidth(10)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -53,17 +55,13 @@ class NewsFeedCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CustomText(
                           text: date,
                           fontSize: ScreenUtil().setSp(12),
                           color: Colors.grey,
                         ),
-                        SizedBox(
-                          width: ScreenUtil().setWidth(3),
-                        ),
+                        SizedBox(width: ScreenUtil().setWidth(3)),
                         Icon(
                           Icons.public,
                           color: Colors.grey,
@@ -77,176 +75,185 @@ class NewsFeedCard extends StatelessWidget {
                 const Icon(Icons.more_horiz),
               ],
             ),
+
             SizedBox(height: ScreenUtil().setHeight(5)),
+
             // Post Content
             CustomText(
               text: postContent,
               fontSize: ScreenUtil().setSp(12),
               color: Colors.black,
             ),
-            SizedBox(height: ScreenUtil().setHeight(5)),
-            
-            // Enhancement 1: Dynamic Image / Placeholder handling
-            hasImage == true
-                ? Padding(
-                    padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(5)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(ScreenUtil().setWidth(8)),
-                      child: imagePath != null
-                          ? Image.asset(
-                              imagePath!,
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: ScreenUtil().setHeight(250),
-                            )
-                          : const Placeholder(fallbackHeight: 200),
-                    ),
-                  )
-                : SizedBox(
-                    height: ScreenUtil().setHeight(1),
-                  ),
 
+            SizedBox(height: ScreenUtil().setHeight(5)),
+
+            // Dynamic Media / Placeholder
+            if (hasImage)
+              imagePath != null && imagePath!.isNotEmpty
+                  ? Image.asset(
+                      imagePath!,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    )
+                  : SizedBox(
+                      height: ScreenUtil().setHeight(200),
+                      child: const Placeholder(),
+                    ),
+
+            SizedBox(height: ScreenUtil().setHeight(10)),
+
+            // 1. Stats Row (Likes, Comments, Shares count)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton.icon(
-                  onPressed: () {
-                    print('Liked');
-                  },
-                  icon: const Icon(
-                    Icons.thumb_up,
-                    color: FB_DARK_PRIMARY,
-                  ),
-                  label: CustomText(
-                    text: numOfLikes.toString(),
-                    fontSize: ScreenUtil().setSp(12),
-                    color: FB_DARK_PRIMARY,
-                  ),
+                CustomText(
+                  text: numOfLikes.toString(),
+                  fontSize: ScreenUtil().setSp(12),
+                  color: Colors.grey.shade700,
                 ),
-                TextButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.comment,
-                    color: FB_DARK_PRIMARY,
-                  ),
-                  label: CustomText(
-                    text: 'Comment',
-                    fontSize: ScreenUtil().setSp(12),
-                    color: FB_DARK_PRIMARY,
-                  ),
-                ),
-                TextButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.redo,
-                    color: FB_DARK_PRIMARY,
-                  ),
-                  label: CustomText(
-                    text: 'Share',
-                    fontSize: ScreenUtil().setSp(12),
-                    color: FB_DARK_PRIMARY,
-                  ),
+                Row(
+                  children: [
+                    CustomText(
+                      text: '$numOfComments Comments',
+                      fontSize: ScreenUtil().setSp(12),
+                      color: Colors.grey.shade700,
+                    ),
+                    SizedBox(width: ScreenUtil().setWidth(10)),
+                    CustomText(
+                      text: '$numOfShares Shares',
+                      fontSize: ScreenUtil().setSp(12),
+                      color: Colors.grey.shade700,
+                    ),
+                  ],
                 ),
               ],
             ),
-            // Enhancement 3: Widget-based Action Buttons Bar
+
+            const Divider(thickness: 1),
+
+            // 2. Enhancement 3: Widget-based Action Buttons Bar
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.thumb_up_outlined, color: Colors.grey),
+                  icon: Icon(
+                    Icons.thumb_up_alt_outlined,
+                    color: Colors.grey.shade700,
+                    size: ScreenUtil().setSp(18),
+                  ),
                   label: CustomText(
                     text: 'Like',
                     fontSize: ScreenUtil().setSp(12),
-                    color: Colors.grey,
+                    color: Colors.grey.shade700,
                   ),
                 ),
                 TextButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.chat_bubble_outline, color: Colors.grey),
+                  icon: Icon(
+                    Icons.chat_bubble_outline,
+                    color: Colors.grey.shade700,
+                    size: ScreenUtil().setSp(18),
+                  ),
                   label: CustomText(
                     text: 'Comment',
                     fontSize: ScreenUtil().setSp(12),
-                    color: Colors.grey,
+                    color: Colors.grey.shade700,
                   ),
                 ),
                 TextButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.share_outlined, color: Colors.grey),
+                  icon: Icon(
+                    Icons.redo_outlined,
+                    color: Colors.grey.shade700,
+                    size: ScreenUtil().setSp(18),
+                  ),
                   label: CustomText(
                     text: 'Share',
                     fontSize: ScreenUtil().setSp(12),
-                    color: Colors.grey,
+                    color: Colors.grey.shade700,
                   ),
                 ),
               ],
             ),
-            const Divider(),
 
-            // Enhancement 3: "Most relevant" dropdown indicator header
+            const Divider(thickness: 1),
+
+            // 3. Most relevant filter
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 CustomText(
-                  text: 'Most relevant ',
-                  fontSize: ScreenUtil().setSp(11),
-                  color: Colors.grey,
+                  text: 'Most relevant',
+                  fontSize: ScreenUtil().setSp(12),
+                  color: Colors.grey.shade700,
                   fontWeight: FontWeight.bold,
                 ),
                 Icon(
                   Icons.arrow_drop_down,
-                  size: ScreenUtil().setSp(16),
-                  color: Colors.grey,
+                  color: Colors.grey.shade700,
+                  size: ScreenUtil().setSp(20),
                 ),
               ],
             ),
+
             SizedBox(height: ScreenUtil().setHeight(5)),
 
-            // Enhancement 3: Comment Input Container with embedded accessory icons
+            // 4. Comment Input Bar
             Row(
               children: [
-                // Enhancement 2: Comment Input Avatar
                 CircleAvatar(
+                  radius: ScreenUtil().setSp(15),
                   backgroundImage: AssetImage(userAvatar),
-                  radius: ScreenUtil().setWidth(14),
                 ),
-                SizedBox(
-                  width: ScreenUtil().setWidth(10),
-                ),
+                SizedBox(width: ScreenUtil().setWidth(8)),
                 Expanded(
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: ScreenUtil().setSp(10),
-                      vertical: ScreenUtil().setHeight(5),
+                      horizontal: ScreenUtil().setWidth(12),
+                      vertical: ScreenUtil().setHeight(8),
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(ScreenUtil().setSp(20)),
-                      ),
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(ScreenUtil().setSp(20)),
                     ),
                     child: Row(
                       children: [
                         Expanded(
                           child: CustomText(
                             text: 'Write a comment...',
-                            fontSize: ScreenUtil().setSp(11),
+                            fontSize: ScreenUtil().setSp(12),
                             color: Colors.grey,
                           ),
                         ),
-                        // Accessory icons matching the design reference
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.gif_box_outlined, size: 16, color: Colors.grey),
-                            SizedBox(width: ScreenUtil().setWidth(4)),
-                            Icon(Icons.emoji_emotions_outlined, size: 16, color: Colors.grey),
-                            SizedBox(width: ScreenUtil().setWidth(4)),
-                            Icon(Icons.camera_alt_outlined, size: 16, color: Colors.grey),
-                            SizedBox(width: ScreenUtil().setWidth(4)),
-                            Icon(Icons.sticky_note_2_outlined, size: 16, color: Colors.grey),
-                          ],
+                        Icon(
+                          Icons.sticky_note_2_outlined,
+                          color: Colors.grey,
+                          size: ScreenUtil().setSp(16),
+                        ),
+                        SizedBox(width: ScreenUtil().setWidth(6)),
+                        Icon(
+                          Icons.sentiment_satisfied_alt_outlined,
+                          color: Colors.grey,
+                          size: ScreenUtil().setSp(16),
+                        ),
+                        SizedBox(width: ScreenUtil().setWidth(6)),
+                        Icon(
+                          Icons.camera_alt_outlined,
+                          color: Colors.grey,
+                          size: ScreenUtil().setSp(16),
+                        ),
+                        SizedBox(width: ScreenUtil().setWidth(6)),
+                        Icon(
+                          Icons.gif_box_outlined,
+                          color: Colors.grey,
+                          size: ScreenUtil().setSp(16),
+                        ),
+                        SizedBox(width: ScreenUtil().setWidth(6)),
+                        Icon(
+                          Icons.face_outlined,
+                          color: Colors.grey,
+                          size: ScreenUtil().setSp(16),
                         ),
                       ],
                     ),
@@ -254,14 +261,15 @@ class NewsFeedCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: ScreenUtil().setHeight(10),
-            ),
+
+            SizedBox(height: ScreenUtil().setHeight(10)),
+
+            // 5. View comments footer
             CustomText(
               text: 'View comments',
               fontSize: ScreenUtil().setSp(12),
-              fontWeight: FontWeight.bold,
               color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
           ],
         ),

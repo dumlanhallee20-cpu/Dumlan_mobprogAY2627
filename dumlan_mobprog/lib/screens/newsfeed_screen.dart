@@ -9,21 +9,21 @@ class NewsFeedScreen extends StatelessWidget {
     return ListView(
       children: const [
         NewsFeedCard(
-          userAvatar: 'images/jm.png',
-          userName: 'Hallee Dumlan',
-          postContent: 'Kamusta',
+          userAvatar: 'assets/images/oo.png',
+          userName: 'Joel Embidd',
+          postContent: 'tulugtulugan para --',
           numOfLikes: 100,
           date: 'October 11',
           hasImage: false,
         ),
         NewsFeedCard(
-          userAvatar: 'images/jm.png',
+          userAvatar: 'assets/images/jm.png',
           userName: 'Hallee Dumlan',
           postContent: 'Just finished my morning run!',
           numOfLikes: 150,
           date: 'October 12',
           hasImage: true,
-          imagePath: 'images/dagoc.jpg', // Change to your post image asset path
+          imagePath: 'assets/images/dagoc.jpg', // Change to your post image asset path
         ),
       ],
     );

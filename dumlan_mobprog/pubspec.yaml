@@ -19,6 +19,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - images/dagoc.jpg
-    - images/jm.png
-    
+    - assets/images/dagoc.jpg
+    - assets/images/jm.png
+    - assets/images/oo.png
+  fonts:
+    - family: Klavika
+      fonts:
+        - asset: assets/fonts/KlavikaBoldBold.otf
