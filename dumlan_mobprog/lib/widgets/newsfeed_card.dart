@@ -131,54 +131,51 @@ class NewsFeedCard extends StatelessWidget {
 
             const Divider(thickness: 1),
 
-            // 2. Enhancement 3: Widget-based Action Buttons Bar
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextButton.icon(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.thumb_up_alt_outlined,
-                    color: Colors.grey.shade700,
-                    size: ScreenUtil().setSp(18),
-                  ),
-                  label: CustomText(
-                    text: 'Like',
-                    fontSize: ScreenUtil().setSp(12),
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-                TextButton.icon(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.chat_bubble_outline,
-                    color: Colors.grey.shade700,
-                    size: ScreenUtil().setSp(18),
-                  ),
-                  label: CustomText(
-                    text: 'Comment',
-                    fontSize: ScreenUtil().setSp(12),
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-                TextButton.icon(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.redo_outlined,
-                    color: Colors.grey.shade700,
-                    size: ScreenUtil().setSp(18),
-                  ),
-                  label: CustomText(
-                    text: 'Share',
-                    fontSize: ScreenUtil().setSp(12),
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-              ],
-            ),
-
-            const Divider(thickness: 1),
-
+           // 2. Enhancement 3: Widget-based Action Buttons Bar
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceAround,
+  children: [
+    TextButton.icon(
+      onPressed: () {},
+      icon: Icon(
+        Icons.favorite_border, // Changed from Icons.thumb_up_alt_outlined
+        color: Colors.grey.shade700,
+        size: ScreenUtil().setSp(18),
+      ),
+      label: CustomText(
+        text: 'Like', // Or 'Love' if you want the label changed too
+        fontSize: ScreenUtil().setSp(12),
+        color: Colors.grey.shade700,
+      ),
+    ),
+    TextButton.icon(
+      onPressed: () {},
+      icon: Icon(
+        Icons.chat_bubble_outline,
+        color: Colors.grey.shade700,
+        size: ScreenUtil().setSp(18),
+      ),
+      label: CustomText(
+        text: 'Comment',
+        fontSize: ScreenUtil().setSp(12),
+        color: Colors.grey.shade700,
+      ),
+    ),
+    TextButton.icon(
+      onPressed: () {},
+      icon: Icon(
+        Icons.redo_outlined,
+        color: Colors.grey.shade700,
+        size: ScreenUtil().setSp(18),
+      ),
+      label: CustomText(
+        text: 'Share',
+        fontSize: ScreenUtil().setSp(12),
+        color: Colors.grey.shade700,
+      ),
+    ),
+  ],
+),
             // 3. Most relevant filter
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
